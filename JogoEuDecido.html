@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!-- a tag definirá só o background (parte não visível)-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale-1">
+    <!-- A área style type="text/css" é para estilizar a página, dar cor, bordas, brilho e etc. As palavras são os itens que estão sendo estilizados, '.' é uma classe, '#' é um id, e se não tiver nada antes da palavra é um objeto. Os itens entre os colchetes são as coisas que estão sendo alteradas no item,exemplo: background-color muda a cor de fundo, border-radius muda se a borda vai ser quadrada ou circular e etc.-->
+    <style type="text/css">
+        body {
+            background-color: black;
+            text-align: center;
+            margin: auto;
+        }
+
+        .white {
+            vertical-align: middle;
+            color: white;
+        }
+
+        iframe {
+            margin-left: 21.5%;
+        }
+
+        #jogo {
+            background-color: rgb(80, 165, 194);
+            text-align: center;
+            width: 90%;
+            height: 85%;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 120%;
+            font-family: Impact, Haettenschweiler, sanelse if;
+
+        }
+
+        .titulo {
+            background-color: rgb(255, 0, 0);
+            width: 80%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        .title {
+            background-color: rgb(0, 255, 0);
+            width: 80%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        .ti {
+            background-color: rgb(179, 19, 179);
+            width: 15%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        input {
+            border-radius: 10px;
+            height: 30px;
+        }
+
+        .button {
+            border: none;
+            border-radius: 10px;
+            top: 50%;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        #red {
+            background-color: red;
+        }
+
+        #green {
+            background-color: rgb(0, 255, 0);
+        }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: rgb(0, 255, 0);
+        }
+
+        #per {
+            background-color: lightgreen;
+            width: 30%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        #neg {
+            background-color: red;
+            width: 30%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        #letn {
+            background-color: red;
+            width: 30%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        #letp {
+            background-color: lightgreen;
+            width: 30%;
+            height: auto;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        img {
+            border-radius: 10px;
+        }
+    </style>
+    <title>Descubra a regra (Modo: Eu decid!)</title>
+</head>
+<!-- na tag body estarão as partes visíveis-->
+<body id="corpo">
+    <!--  tag 'img' é para colocar imagens na página, aqui, para não ter que fazer o dowload das imagens, usei imagens da internet, as quais são encontradas pelos links dentro da área 'src'-->
+    <img id="img1" src="https://kanto.legiaodosherois.com.br/w760-h398-cfill/wp-content/uploads/2018/04/legiao_e0TvMFmKdHE7z496SwjkZ_YA5gblhNiJt8xOqscQpR.jpg.webp" alt="L" align="left" width="30%" height="30%">
+    <img id="img2" src="https://i.pinimg.com/originals/32/24/bc/3224bc49bc5a1db3b0b6ab969161e36a.jpg" alt="M" height="20%" width="25%" align="right"><br>
+    <br><br><!-- 'br' é quebra de linha-->
+    <!-- 'div' define uma área da página mais específica, neste caso está sendo utilizada para deixar somente uma parte da página azul, enquato o fundo permanece preto-->
+    <div id="jogo">
+        <br>
+        <!-- este segundo div é para definir uma área para o título, que deixa o fundo roxo, o mesmo acontece com os 'div' de classe titulo e title-->
+        <div class="ti">
+            <div class="titulo">
+                <h1 class="green"> Descubra a regra </h1>
+            </div> <!-- h1 = titulo    h3 = subtitulo-->
+            <div class="title">
+                <h3 class="red">(Modo: Eu decido) </h3>
+            </div>
+        </div>
+        <!-- o form, como o nome indica, é um formulário, aqui é onde a mágica acontece, ele, por meio do label pede para digitar uma palavra, a qual será escrita dentro do input (barra de texto), o input possui 2 funções, onmouseenter, que faz com que o fundo mude de cor quando o cursor do mouse entrar na área do input, e onmouseleave, que faz a cor de fundo voltar ao normal quando o cursor sai da área-->
+        <form action="" method="get">
+            <label for="pal">Digite uma Palavra</label><br>
+            <input type="text" name="Palavra" id="pal" onmouseover="javascript: this.style.backgroundColor = 'blue'"onmouseleave="javascript: this.style.backgroundColor = 'white'" background-color="white" autocomplete="off"><br>
+            <!-- Aqui há 3 tags button, cada uma delas cria um botão, button type="reset" vai limpar o que estiver escrito no input, e os botões validar e proibir vão chamar 2 funções, que serão explicadas mais a frente, na área de javascript-->
+            <button type='button' class="button" id="green" onclick="javascript: validar('#pal')">Válida</button>
+            <button type="reset" class="button">Limpar</button>
+            <button type="button" class="button" id="red" onclick="javascript: proibir('#pal')">Proibida</button><br><br>
+        </form>
+        <!-- aqui acabou o formulário, novamente há uma imagem, e há a tag table, que cria uma tabela em html, perceba que há 4 tabelas, as 2 primeiras são para colocar as palavras válidas e negadas, e as outras duas, as letras válidas e negadas (border é para definir a espessura da borda, no caso, não há bordas nas tabelas)-->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR_cLTXkmiCw3Y4wQayH22DKZ3ExEB1iHKSA&usqp=CAU" alt="D">
+        <!-- id='neg' significa que essa tabela é das palavras proibidas-->
+        <table border="0" id="neg">
+            <thead>
+                <tr>
+                    <th> Palavras proibidas </th>
+                </tr>
+            </thead>
+        </table><br>
+        <!-- id='per' significa que essa tabela é das palavras permitidas-->
+        <table border="0" id="per">
+            <thead>
+                <tr>
+                    <th> Palavras permitidas </th>
+                </tr>
+            </thead>
+        </table><br>
+        <!-- As 2 tabelas de letras, diferente das tabelas de palavras, já possuem informações, as quais serão alteradas pelo javascript, enquanto as 2 primeiras não possuem informações, e terão informações adicionadas pelo javascript-->
+        <!-- id='letn' significa que essa tabela é das letras proibidas-->
+        <table border="0" id="letn">
+            <thead>
+                <tr>
+                    <th> Letras negadas </th>
+                </tr>
+            </thead>
+            <tr>
+                <th> A - </th>
+                <td id="an"> 0</td>
+            </tr>
+            <tr>
+                <th> B - </th>
+                <td id="bn"> 0</td>
+            </tr>
+            <tr>
+                <th> C - </th>
+                <td id="cn"> 0</td>
+            </tr>
+            <tr>
+                <th> D - </th>
+                <td id="dn"> 0</td>
+            </tr>
+            <tr>
+                <th> E - </th>
+                <td id="en"> 0</td>
+            </tr>
+            <tr>
+                <th> F - </th>
+                <td id="fn"> 0</td>
+            </tr>
+            <tr>
+                <th> G - </th>
+                <td id="gn"> 0</td>
+            </tr>
+            <tr>
+                <th> H - </th>
+                <td id="hn"> 0</td>
+            </tr>
+            <tr>
+                <th> I - </th>
+                <td id="inn"> 0</td>
+            </tr>
+            <tr>
+                <th> J - </th>
+                <td id="jn"> 0</td>
+            </tr>
+            <tr>
+                <th> K - </th>
+                <td id="kn"> 0</td>
+            </tr>
+            <tr>
+                <th> L - </th>
+                <td id="ln"> 0</td>
+            </tr>
+            <tr>
+                <th> M - </th>
+                <td id="mn"> 0</td>
+            </tr>
+            <tr>
+                <th> N - </th>
+                <td id="nn"> 0</td>
+            </tr>
+            <tr>
+                <th> O - </th>
+                <td id="on"> 0</td>
+            </tr>
+            <tr>
+                <th> P - </th>
+                <td id="pn"> 0</td>
+            </tr>
+            <tr>
+                <th> Q - </th>
+                <td id="qn"> 0</td>
+            </tr>
+            <tr>
+                <th> R - </th>
+                <td id="rn"> 0</td>
+            </tr>
+            <tr>
+                <th> S - </th>
+                <td id="sn"> 0</td>
+            </tr>
+            <tr>
+                <th> T - </th>
+                <td id="tn"> 0</td>
+            </tr>
+            <tr>
+                <th> U - </th>
+                <td id="un"> 0</td>
+            </tr>
+            <tr>
+                <th> V - </th>
+                <td id="vn"> 0</td>
+            </tr>
+            <tr>
+                <th> W - </th>
+                <td id="wn"> 0</td>
+            </tr>
+            <tr>
+                <th> X - </th>
+                <td id="xn"> 0</td>
+            </tr>
+            <tr>
+                <th> Y - </th>
+                <td id="yn"> 0</td>
+            </tr>
+            <tr>
+                <th> Z - </th>
+                <td id="zn"> 0</td>
+            </tr>
+            <tr>
+                <th> Ç - </th>
+                <td id="çn"> 0</td>
+            </tr>
+        </table><br>
+        <!-- id='letp' significa que essa tabela é das letras permitidas-->
+        <table border="0" id="letp">
+            <thead>
+                <tr>
+                    <th> Letras permitidas </th>
+                </tr>
+            </thead>
+            <tr>
+                <th> A - </th>
+                <td id="a"> 0</td>
+                </t>
+            <tr>
+                <th> B - </th>
+                <td id="b"> 0</td>
+            </tr>
+            <tr>
+                <th> C - </th>
+                <td id="c"> 0</td>
+            </tr>
+            <tr>
+                <th> D - </th>
+                <td id="d"> 0</td>
+            </tr>
+            <tr>
+                <th> E - </th>
+                <td id="e"> 0</td>
+            </tr>
+            <tr>
+                <th> F - </th>
+                <td id="f"> 0</td>
+            </tr>
+            <tr>
+                <th> G - </th>
+                <td id="g"> 0</td>
+            </tr>
+            <tr>
+                <th> H - </th>
+                <td id="h"> 0</td>
+            </tr>
+            <tr>
+                <th> I - </th>
+                <td id="i"> 0</td>
+            </tr>
+            <tr>
+                <th> J - </th>
+                <td id="j"> 0</td>
+            </tr>
+            <tr>
+                <th> K - </th>
+                <td id="k"> 0</td>
+            </tr>
+            <tr>
+                <th> L - </th>
+                <td id="l"> 0</td>
+            </tr>
+            <tr>
+                <th> M - </th>
+                <td id="m"> 0</td>
+            </tr>
+            <tr>
+                <th> N - </th>
+                <td id="n"> 0</td>
+            </tr>
+            <tr>
+                <th> O - </th>
+                <td id="o"> 0</td>
+            </tr>
+            <tr>
+                <th> P - </th>
+                <td id="p"> 0</td>
+            </tr>
+            <tr>
+                <th> Q - </th>
+                <td id="q"> 0</td>
+            </tr>
+            <tr>
+                <th> R - </th>
+                <td id="r"> 0</td>
+            </tr>
+            <tr>
+                <th> S - </th>
+                <td id="s"> 0</td>
+            </tr>
+            <tr>
+                <th> T - </th>
+                <td id="t"> 0</td>
+            </tr>
+            <tr>
+                <th> U - </th>
+                <td id="u"> 0</td>
+            </tr>
+            <tr>
+                <th> V - </th>
+                <td id="v"> 0</td>
+            </tr>
+            <tr>
+                <th> W - </th>
+                <td id="w"> 0</dh>
+            </tr>
+            <tr>
+                <th> X - </th>
+                <td id="x"> 0</dh>
+            </tr>
+            <tr>
+                <th> Y - </th>
+                <td id="y"> 0</td>
+            </tr>
+            <tr>
+                <th> Z - </th>
+                <td id="z"> 0</td>
+            </tr>
+            <tr>
+                <th> Ç - </th>
+                <td id="ç"> 0</dh>
+            </tr>
+        </table><br>
+        <!-- Um último botão para terminar com a seção, ele possui uma função surpresa hahaha-->
+        <button type="button" align="center" class="button" onclick="javascript: acabar()">Acabar Jogo</button>
+    </div>
+    <!-- apartir daqui começará a área de javascript!!! -->
+    <script language="JavaScript">
+        // A primeira função, com o nome de acabar serve para quando clicar no último botão da página, o jogo termine e seja colocado 2 imagens dos lados e um texto no centro, assim como um vídeo do youtube logo abaixo
+        function acabar() {
+            // let 're' é uma variável que criará uma imagem à esquerda, let 'rd' faz o mesmo só que a direita
+            let re = "<br><br><img src='http://1.bp.blogspot.com/-KR5vUUnwuk0/VRUuFSKx-DI/AAAAAAAAKwA/QwvtdGW_PuE/s1600/aprender-desenhar.gif' alt='gif' height='30%' width='30%' align='left'>";
+            let rd = "<img src='http://1.bp.blogspot.com/-KR5vUUnwuk0/VRUuFSKx-DI/AAAAAAAAKwA/QwvtdGW_PuE/s1600/aprender-desenhar.gif' alt='gif' height='30%' width='30%' align='right'>";
+            // let 'tit', 'stit' e 'tur' são as variáveis que criam texto no javascript
+            let tit = "<h1 align='center' class='white'> Espero que tenha descoberto a regra </h1><br><br><br><br>";
+            let stit = "<h3 align='center' class='white'> Feito por: JoaoVitor5d5 </h3>";
+            let tur = "<h3 align='center' class='white'></h3>"; 
+            // let 'mus' cria um iframe, que é uma tag que puxará, neste caso, um vídeo do youtube
+            let mus = "<iframe width='560' height='315' src='https://www.youtube.com/embed/k85mRPqvMbE?start=0' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' autoplay='autolay' allowfullscreen></iframe>";
+            const child = document.getElementById("jogo");
+            const img1 = document.getElementById("img1");
+            const img2 = document.getElementById("img2");
+            // as três linhas de cima  puxam o html elementos que serão apagados nesta função, e as três linhas abaixo, por meio do comando removeChild apagam essas informações, o que deixa a página em branco
+            document.getElementById("corpo").removeChild(child);
+            document.getElementById("corpo").removeChild(img1);
+            document.getElementById("corpo").removeChild(img2);
+            // agora, com a página totalmente em branco, as variáveis criadas nesta função são posicionadas, por meio do comando insertAdjacentHTML, dentro do body
+            const tudo = document.getElementById("corpo");
+            tudo.insertAdjacentHTML("afterbegin", tit);
+            tudo.insertAdjacentHTML("afterbegin", stit);
+            tudo.insertAdjacentHTML("afterbegin", tur);
+            tudo.insertAdjacentHTML("beforebegin", re);
+            tudo.insertAdjacentHTML("beforebegin", rd);
+            tudo.insertAdjacentHTML("afterend", mus);
+        }
+        
+        // uma lista de variáveis, 1 para cada letra, elas serão utilizadas para dizer quantas vezes cada letra foi permitida (não considerei as letras com acento!)
+        var a = 0;
+        var b = 0;
+        var c = 0;
+        var d = 0;
+        var e = 0;
+        var f = 0;
+        var g = 0;
+        var h = 0;
+        var i = 0;
+        var j = 0;
+        var k = 0;
+        var l = 0;
+        var m = 0;
+        var n = 0;
+        var o = 0;
+        var p = 0;
+        var q = 0;
+        var r = 0;
+        var s = 0;
+        var t = 0;
+        var u = 0;
+        var v = 0;
+        var w = 0;
+        var x = 0;
+        var y = 0;
+        var z = 0;
+        var ç = 0;
+
+        // a variável tamanho é usada dentro da função validar
+        var tamanho = 0;
+
+        // a função validar será chamada quando clicar no botão validar, nesta função, a variável 'h3' puxará o valor do input (onde a palavra foi digitada), let 'html' criará uma linha de tabela com a palavra digitada dentro, e por meio da constante 'h2', adicionará, com o comando insertAdjascentHTML, a palavra na tabela de palavras permitidas
+        function validar(h3) {
+            var h3 = document.getElementById("pal").value;
+            const h2 = document.getElementById("per");
+            let html = "<th>" + h3 + "</th>";
+            h2.insertAdjacentHTML("afterbegin", html);
+
+            // esta é uma estrutura de repetição que utiliza 3 variáveis para percorrer toda a palavra e ver quais letras foram digitadas, e quantas vezes
+            while (tamanho < h3.length) {
+                // neste while, ele olhará a posição 'tamanho'(a variável criada antes, que tem valor 0) e verificará qual letra tem naquela posição(todos esses if e else if, cada um deles corresponde a 1 letra), identificada a letra, ele somará na variável correspondente, e então substituirá o valor na tabela de letras, exemplo: a palavra é 'carro', ele verificará que a letra c=1 a=1 r=2 o=1, e realocará esses valores na tabela de letras correspondente 
+                if (h3[tamanho].includes("a") || h3[tamanho].includes("A")) {
+                    a = a + 1;
+                    document.getElementById("a").textContent = a;
+                }else if (h3[tamanho].includes("b") || h3[tamanho].includes("B")) {
+                    b = b + 1;
+                    document.getElementById("b").textContent = b;
+                }else if (h3[tamanho].includes("c") || h3[tamanho].includes("C")) {
+                    c = c + 1;
+                    document.getElementById("c").textContent = c;
+                }else if (h3[tamanho].includes("d") || h3[tamanho].includes("D")) {
+                    d = d + 1;
+                    document.getElementById("d").textContent = d;
+                }else if (h3[tamanho].includes("e") || h3[tamanho].includes("E")) {
+                    e = e + 1;
+                    document.getElementById("e").textContent = e;
+                }else if (h3[tamanho].includes("f") || h3[tamanho].includes("F")) {
+                    f = f + 1;
+                    document.getElementById("f").textContent = f;
+                }else if (h3[tamanho].includes("g") || h3[tamanho].includes("G")) {
+                    g = g + 1;
+                    document.getElementById("g").textContent = g;
+                }else if (h3[tamanho].includes("h") || h3[tamanho].includes("H")) {
+                    h = h + 1;
+                    document.getElementById("h").textContent = h;
+                }else if (h3[tamanho].includes("i") || h3[tamanho].includes("I")) {
+                    i = i + 1;
+                    document.getElementById("i").textContent = i;
+                }else if (h3[tamanho].includes("j") || h3[tamanho].includes("J")) {
+                    j = j + 1;
+                    document.getElementById("j").textContent = j;
+                }else if (h3[tamanho].includes("k") || h3[tamanho].includes("K")) {
+                    k = k + 1;
+                    document.getElementById("k").textContent = k;
+                }else if (h3[tamanho].includes("l") || h3[tamanho].includes("L")) {
+                    l = l + 1;
+                    document.getElementById("l").textContent = l;
+                }else if (h3[tamanho].includes("m") || h3[tamanho].includes("M")) {
+                    m = m + 1;
+                    document.getElementById("m").textContent = m;
+                }else if (h3[tamanho].includes("n") || h3[tamanho].includes("N")) {
+                    n = n + 1;
+                    document.getElementById("n").textContent = n;
+                }else if (h3[tamanho].includes("o") || h3[tamanho].includes("O")) {
+                    o = o + 1;
+                    document.getElementById("o").textContent = o;
+                }else if (h3[tamanho].includes("p") || h3[tamanho].includes("P")) {
+                    p = p + 1;
+                    document.getElementById("p").textContent = p;
+                }else if (h3[tamanho].includes("q") || h3[tamanho].includes("Q")) {
+                    q = q + 1;
+                    document.getElementById("q").textContent = q;
+                }else if (h3[tamanho].includes("r") || h3[tamanho].includes("R")) {
+                    r = r + 1;
+                    document.getElementById("r").textContent = r;
+                }else if (h3[tamanho].includes("s") || h3[tamanho].includes("S")) {
+                    s = s + 1;
+                    document.getElementById("s").textContent = s;
+                }else if (h3[tamanho].includes("t") || h3[tamanho].includes("T")) {
+                    t = t + 1;
+                    document.getElementById("t").textContent = t;
+                }else if (h3[tamanho].includes("u") || h3[tamanho].includes("U")) {
+                    u = u + 1;
+                    document.getElementById("u").textContent = u;
+                }else if (h3[tamanho].includes("v") || h3[tamanho].includes("V")) {
+                    v = v + 1;
+                    document.getElementById("v").textContent = v;
+                }else if (h3[tamanho].includes("w") || h3[tamanho].includes("W")) {
+                    w = w + 1;
+                    document.getElementById("w").textContent = w;
+                }else if (h3[tamanho].includes("x") || h3[tamanho].includes("X")) {
+                    x = x + 1;
+                    document.getElementById("x").textContent = x;
+                }else if (h3[tamanho].includes("y") || h3[tamanho].includes("Y")) {
+                    y = y + 1;
+                    document.getElementById("y").textContent = y;
+                }else if (h3[tamanho].includes("z") || h3[tamanho].includes("Z")) {
+                    z = z + 1;
+                    document.getElementById("z").textContent = z;
+                }else if (h3[tamanho].includes("ç") || h3[tamanho].includes("Ç")) {
+                    ç = ç + 1;
+                    document.getElementById("ç").textContent = ç;
+                }
+                // aqui ele mudará o valor de tamanho, assim, o que antes era 0 passou a ser 1, e a posição que será buscada da próxima vez é a posição 1
+                tamanho = tamanho + 1;
+            }
+            // depois que o loop while checar todas as letras, resetamos o valor de tamanho para não dar erro na próxima vez
+            tamanho = 0;
+        }
+
+        // apartir daqui até o final da área javascript se repetirá o mesmo, só que agora procurando as letras e palavras negadas
+        var an = 0;
+        var bn = 0;
+        var cn = 0;
+        var dn = 0;
+        var en = 0;
+        var fn = 0;
+        var gn = 0;
+        var hn = 0;
+        var inn = 0;
+        var jn = 0;
+        var kn = 0;
+        var ln = 0;
+        var mn = 0;
+        var nn = 0;
+        var on = 0;
+        var pn = 0;
+        var qn = 0;
+        var rn = 0;
+        var sn = 0;
+        var tn = 0;
+        var un = 0;
+        var vn = 0;
+        var wn = 0;
+        var xn = 0;
+        var yn = 0;
+        var zn = 0;
+        var çn = 0;
+
+        var tamanhon = 0;
+        function proibir(h3) {
+            var h3 = document.getElementById("pal").value;
+            const h2 = document.getElementById("neg");
+            let html = "<th>" + h3 + "</th>";
+            h2.insertAdjacentHTML("afterbegin", html);
+
+            while (tamanhon < h3.length) {
+                if (h3[tamanhon].includes("a") || h3[tamanhon].includes("A")) {
+                    an = an + 1;
+                    document.getElementById("an").textContent = an;
+                }else if (h3[tamanhon].includes("b") || h3[tamanhon].includes("B")) {
+                    bn = bn + 1;
+                    document.getElementById("bn").textContent = bn;
+                }else if (h3[tamanhon].includes("c") || h3[tamanhon].includes("C")) {
+                    cn = cn + 1;
+                    document.getElementById("cn").textContent = cn;
+                }else if (h3[tamanhon].includes("d") || h3[tamanhon].includes("D")) {
+                    dn = dn + 1;
+                    document.getElementById("dn").textContent = dn;
+                }else if (h3[tamanhon].includes("e") || h3[tamanhon].includes("E")) {
+                    en = en + 1;
+                    document.getElementById("en").textContent = en;
+                }else if (h3[tamanhon].includes("f") || h3[tamanhon].includes("F")) {
+                    fn = fn + 1;
+                    document.getElementById("fn").textContent = fn;
+                }else if (h3[tamanhon].includes("g") || h3[tamanhon].includes("G")) {
+                    gn = gn + 1;
+                    document.getElementById("gn").textContent = gn;
+                }else if (h3[tamanhon].includes("h") || h3[tamanhon].includes("H")) {
+                    hn = hn + 1;
+                    document.getElementById("hn").textContent = hn;
+                }else if (h3[tamanhon].includes("i") || h3[tamanhon].includes("I")) {
+                    inn = inn + 1;
+                    document.getElementById("inn").textContent = inn;
+                }else if (h3[tamanhon].includes("j") || h3[tamanhon].includes("J")) {
+                    jn = jn + 1;
+                    document.getElementById("jn").textContent = jn;
+                }else if (h3[tamanhon].includes("k") || h3[tamanhon].includes("K")) {
+                    kn = kn + 1;
+                    document.getElementById("kn").textContent = kn;
+                }else if (h3[tamanhon].includes("l") || h3[tamanhon].includes("L")) {
+                    ln = ln + 1;
+                    document.getElementById("ln").textContent = ln;
+                }else if (h3[tamanhon].includes("m") || h3[tamanhon].includes("M")) {
+                    mn = mn + 1;
+                    document.getElementById("mn").textContent = mn;
+                }else if (h3[tamanhon].includes("n") || h3[tamanhon].includes("N")) {
+                    nn = nn + 1;
+                    document.getElementById("nn").textContent = nn;
+                }else if (h3[tamanhon].includes("o") || h3[tamanhon].includes("O")) {
+                    on = on + 1;
+                    document.getElementById("on").textContent = on;
+                }else if (h3[tamanhon].includes("p") || h3[tamanhon].includes("P")) {
+                    pn = pn + 1;
+                    document.getElementById("pn").textContent = pn;
+                }else if (h3[tamanhon].includes("q") || h3[tamanhon].includes("Q")) {
+                    qn = qn + 1;
+                    document.getElementById("qn").textContent = qn;
+                }else if (h3[tamanhon].includes("r") || h3[tamanhon].includes("R")) {
+                    rn = rn + 1;
+                    document.getElementById("rn").textContent = rn;
+                }else if (h3[tamanhon].includes("s") || h3[tamanhon].includes("S")) {
+                    sn = sn + 1;
+                    document.getElementById("sn").textContent = sn;
+                }else if (h3[tamanhon].includes("t") || h3[tamanhon].includes("T")) {
+                    tn = tn + 1;
+                    document.getElementById("tn").textContent = tn;
+                }else if (h3[tamanhon].includes("u") || h3[tamanhon].includes("U")) {
+                    un = un + 1;
+                    document.getElementById("un").textContent = un;
+                }else if (h3[tamanhon].includes("v") || h3[tamanhon].includes("V")) {
+                    vn = vn + 1;
+                    document.getElementById("vn").textContent = vn;
+                }else if (h3[tamanhon].includes("w") || h3[tamanhon].includes("W")) {
+                    wn = wn + 1;
+                    document.getElementById("wn").textContent = wn;
+                }else if (h3[tamanhon].includes("x") || h3[tamanhon].includes("X")) {
+                    xn = xn + 1;
+                    document.getElementById("xn").textContent = xn;
+                }else if (h3[tamanhon].includes("y") || h3[tamanhon].includes("Y")) {
+                    yn = yn + 1;
+                    document.getElementById("yn").textContent = yn;
+                }else if (h3[tamanhon].includes("z") || h3[tamanhon].includes("Z")) {
+                    zn = zn + 1;
+                    document.getElementById("zn").textContent = zn;
+                }else if (h3[tamanhon].includes("ç") || h3[tamanhon].includes("Ç")) {
+                    çn = çn + 1;
+                    document.getElementById("çn").textContent = çn;
+                }
+                tamanhon = tamanhon + 1;
+            }
+            tamanhon = 0;
+        }
+    </script>
+    <!-- aqui acabou a área de javascript, tem uma última quebra de linha e depois acaba o código-->
+    <br>
+</body>
